@@ -1,11 +1,13 @@
 /*
 Cory Witt
-script.js
+lib.js
 INFO 1579
 Shaw
-07/07/2025
-*/
+08/01/2025 */
 
+// Weather Forecast class, Contains methods to get weather data and format it for display.
+ 
+"use strict";
 class WeatherForecast {
     constructor(d, t, tM, tX) {
         console.log(d, t, tM, tX);
