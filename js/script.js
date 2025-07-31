@@ -9,50 +9,52 @@ Shaw
 "use strict";
 // This script handles the weather information retrieval and display for a user's current location.
 
-$(document).ready( () => {
-    startClock();
+document.addEventListener('DOMContentLoaded', () => {
+     (function (){
+        const c = Clock;
+        c.startClock();
     
-    let lat;
-    let lon; 
-    const appId = '6ae9e4516899cbbe9c1a98da589136a5';
-    const currentWxHolder = document.getElementById('currentWxHolder');
-    const fiveDayInfoHolder = document.getElementById('fiveDayInfoHolder');
+        let lat;
+        let lon; 
+        const appId = '6ae9e4516899cbbe9c1a98da589136a5';
+        const currentWxHolder = document.getElementById('currentWxHolder');
+        const fiveDayInfoHolder = document.getElementById('fiveDayInfoHolder');
 
-    const buttons = document.getElementsByTagName('button');
-    for(button of buttons) {
-        button.addEventListener('click', onButtonClicked);
-    }
-  
-    navigator.geolocation.getCurrentPosition((pos) => {
-      lat = pos.coords.latitude;
-      lon = pos.coords.longitude;
-    });
-
-    function onButtonClicked(evt) {
-        const buttonName = evt.target.dataset.id;
-        switch(buttonName) {
-            case 'getCurrentWx':
-                getCurrentWx();
-                break;
-            case 'getFiveDay':
-                getFiveDay();
-                break;
+        const buttons = document.getElementsByTagName('button');
+        for(let button of buttons) {
+           button.addEventListener('click', onButtonClicked);
         }
-    }
 
-    function getCurrentWx() {
-        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}&units=imperial`;
+        navigator.geolocation.getCurrentPosition((pos) => {
+           lat = pos.coords.latitude;
+           lon = pos.coords.longitude;
+        });
 
-        fetch(url)
-        .then((r) => r.json())
-            .then((wx)=>{
-                console.log(wx);
-                const locationName = wx.name;
-                const currentTemp = wx.main.temp;
-                const maxTemp = wx.main.temp;
-                const humidity = wx.main.humidity;
+        function onButtonClicked(evt) {
+          const buttonName = evt.target.dataset.id;
+          switch(buttonName) {
+              case 'getCurrentWx':
+                 getCurrentWx();
+                 break;
+              case 'getFiveDay':
+                 getFiveDay();
+                 break;
+          }
+        }
 
-                let s = `
+        function getCurrentWx() {
+          const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}&units=imperial`;
+
+          fetch(url)
+          .then((r) => r.json())
+              .then((wx)=>{
+                 console.log(wx);
+                 const locationName = wx.name;
+                 const currentTemp = wx.main.temp;
+                 const maxTemp = wx.main.temp;
+                 const humidity = wx.main.humidity;
+
+                 let s = `
                     <h2>${locationName}</h2>
                     <div>Current Temp: ${currentTemp}&#8457;</div>
                     <div>Max Temp: ${maxTemp}&#8457;</div>
@@ -63,15 +65,15 @@ $(document).ready( () => {
                 
                 
             })
-                .catch((e) => {
-                    console.log(e);
-                });
-    }
+            .catch((e) => {
+                console.log(e);
+            });
+        }
     
-    function getFiveDay() {
-        const url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=5&appid=${appId}&units=imperial`;
-        fetch(url)
-            .then( (r) => r.json())
+        function getFiveDay() {
+          const url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=5&appid=${appId}&units=imperial`;
+          fetch(url)
+             .then( (r) => r.json())
                 .then( (wx) => {
                     console.log(wx);
                     const locationName = wx.city.name;
@@ -126,8 +128,9 @@ $(document).ready( () => {
 
                     
                 })
-                    .catch ((e) => {
-                        console.log(e);
-                    })
-    }
+                .catch ((e) => {
+                     console.log(e);
+                })
+        }
+    }); 
 });
