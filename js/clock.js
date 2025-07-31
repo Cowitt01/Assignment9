@@ -1,9 +1,9 @@
 /*
 Cory Witt
-script.js
+clock.js
 INFO 1579
 Shaw
-07/26/2025
+07/31/2025
 */
 
 "use strict";
