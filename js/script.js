@@ -7,18 +7,19 @@ Shaw
 */
 
 "use strict";
-// This script handles the weather information retrieval and display for a user's current location.
+ //Weatherator is a application that displays the current weather and 3 hour forecast based on the user's location.
+ //script.js is the main script that will initialize the Clock, UI components, and handle user interactions.
 
-document.addEventListener('DOMContentLoaded', () => {
-     (function (){
-        const c = Clock;
-        c.startClock();
+document.addEventListener('DOMContentLoaded', () => {    //Make sure the DOM is fully loaded
+     (function (){                                       //IIFE function to encapsulate main logic 
+        const c = Clock;                                 //Reference to the Clock structure
+        c.startClock();                                  //call the startClock method - to initialize the clock in clock.js
     
         let lat;
         let lon; 
         const appId = '6ae9e4516899cbbe9c1a98da589136a5';
-        const currentWxHolder = document.getElementById('currentWxHolder');
-        const fiveDayInfoHolder = document.getElementById('fiveDayInfoHolder');
+        const currentWxHolder = document.getElementById('currentWxHolder');          
+        const fiveDayInfoHolder = document.getElementById('fiveDayInfoHolder');  
 
         const buttons = document.getElementsByTagName('button');
         for(let button of buttons) {
@@ -42,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
 
-        function getCurrentWx() {
-          const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}&units=imperial`;
+        function getCurrentWx() {                        //getCurrentWx() function gets the current weather - based on the user's location
+          const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}&units=imperial`;  //API call to OpenWeatherMap
 
           fetch(url)
           .then((r) => r.json())
@@ -70,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     
-        function getFiveDay() {
+        function getFiveDay() {                          //getFiveDay() function gets the 3 hour forecast - based on the user's location and displays to web page            
           const url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=5&appid=${appId}&units=imperial`;
           fetch(url)
              .then( (r) => r.json())
@@ -83,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     for (let i = 0; i <= 2; i++) {
                         console.log(f[i]);
-                        let w = new WeatherForecast(f[i].dt_txt, f[i].main.temp, f[i].main.temp_min, f[i].main.temp_max);
+                        let w = new WeatherForecast(f[i].dt_txt, f[i].main.temp, f[i].main.temp_min, f[i].main.temp_max);   //creates a WeatherForecast object (calls the WeatherForecast constructor in lib.js)
                         forecastArray.push(w);
                     }
 
@@ -97,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     for(forecast of forecastArray) {
                         let div = document.createElement('div');
                         let h4 = document.createElement('h3');
-                        h4.innerHTML = forecast.getDayString();
+                        h4.innerHTML = forecast.getDayString();                                                            //calls the getDayString() method from the WeatherForecast class (in lib.js) to build the formatted date string
                         div.appendChild(h4);
 
                         let d = document.createElement('div');
@@ -132,5 +133,5 @@ document.addEventListener('DOMContentLoaded', () => {
                      console.log(e);
                 })
         }
-    })(); 
+    })();                                             //End of IIFE function
 });

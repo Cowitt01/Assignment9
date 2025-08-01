@@ -3,13 +3,13 @@ Cory Witt
 lib.js
 INFO 1579
 Shaw
-07/31/2025 */
+08/01/2025 */
 
-// Weather Forecast class, Contains methods to get weather data and format it for display.
+// lib.js contains the WeatherForecast class and getters/setters for the WeatherForecast class.
  
 "use strict";
 class WeatherForecast {
-    constructor(d, t, tM, tX) {
+    constructor(d, t, tM, tX) {                     //Constructor for the WeatherForecast class
         console.log(d, t, tM, tX);
         this.date = d;
         this.temp = t;
@@ -33,7 +33,7 @@ class WeatherForecast {
         return this.tempMin;
     }
 
-    getDayString() {
+    getDayString() {                                                  //getDayString() builds and returns a string containing the weekday, month, and date
         let d = new Date(this.date);
         let day = d.getDay();
         let date = d.getDate();
@@ -63,7 +63,6 @@ class WeatherForecast {
                 break;
         }
 
-        let s = `${dayName}, ${mon}/${date}`;
-        return s;
+        return `${dayName}, ${mon}/${date}`;                        //Returns a string containing weekday, month, and date.
     }
 }
