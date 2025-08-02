@@ -33,7 +33,7 @@ class WeatherForecast {
         return this.tempMin;
     }
 
-    getDayString() {                                                  //getDayString() builds and returns a string containing the weekday, month, and date
+    getDayString() {                                               //getDayString() builds and returns a string containing the weekday, month, and date
         let d = new Date(this.date);
         let day = d.getDay();
         let date = d.getDate();

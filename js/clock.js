@@ -7,14 +7,14 @@ Shaw
 */
 
 "use strict";
-//
+//The clock.js file contains a clock structure and methods that helps construct a clock on a web page
  
-const Clock = (() => {
+const Clock = (() => {            //IIFE CLock structure that contains the clocks methods & properties (canvas, context, radius)
    let canvas; 
    let ctx;    
    let radius; 
 
-   const startClock = () => {
+   const startClock = () => {                             //startClock() initializes the clock
       canvas = document.getElementById('clock');
       ctx = canvas.getContext('2d');
       radius = canvas.height / 2;
@@ -23,13 +23,13 @@ const Clock = (() => {
       setInterval(drawClock, 1000);
    }
 
-   const drawClock = () => {
+   const drawClock = () => {                             //drawClock() method creates the clock face by calling the drawFace(), drawNumbers(), and drawTime() methods
       drawFace(ctx, radius);
       drawNumbers(ctx, radius);
       drawTime(ctx, radius);
    }
 
-   const drawTime = (ctx, radius) => {
+   const drawTime = (ctx, radius) => {                   //drawTime() method creates the correct hour\minute clock. Calls the drawHand() method to create the clock hands
       const now = new Date();
       let hour = now.getHours();
       let minute = now.getMinutes();
@@ -46,7 +46,7 @@ const Clock = (() => {
       drawHand(ctx, second, radius*0.9, radius*0.02);  
    }
 
-    const drawHand = (ctx, pos, length, width) => {
+    const drawHand = (ctx, pos, length, width) => {       //drawHand() method creates the clock hands
       ctx.beginPath();
       ctx.lineWidth = width;
       ctx.lineCap = "round";
@@ -57,7 +57,7 @@ const Clock = (() => {
       ctx.rotate(-pos); 
    }
 
-   const drawNumbers = (ctx, radius) => {
+   const drawNumbers = (ctx, radius) => {                //drawNumbers() method creates the clock numbers
       let ang;
       let num;
 
@@ -77,7 +77,7 @@ const Clock = (() => {
       }
     }
 
-    const drawFace = () => {
+    const drawFace = () => {                            //drawFace() method creates clock face
       let grad; 
 
       ctx.beginPath();
@@ -99,6 +99,6 @@ const Clock = (() => {
       ctx.fill();
     }
     return {
-        startClock
+        startClock                                   //calls the startClock method to start the clock
     };
-})();
+})();                                                //End of Clock IIFE structure

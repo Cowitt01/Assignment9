@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {    //Make sure the DOM is 
                     for(forecast of forecastArray) {
                         let div = document.createElement('div');
                         let h4 = document.createElement('h3');
-                        h4.innerHTML = forecast.getDayString();                                                            //calls the getDayString() method from the WeatherForecast class (in lib.js) to build the formatted date string
+                        h4.innerHTML = forecast.getDayString();                    //calls the getDayString() method from the WeatherForecast class (in lib.js) to build the formatted date string
                         div.appendChild(h4);
 
                         let d = document.createElement('div');
