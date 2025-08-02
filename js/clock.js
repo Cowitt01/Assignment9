@@ -3,16 +3,16 @@ Cory Witt
 clock.js
 INFO 1579
 Shaw
-07/31/2025
+08/01/2025
 */
 
 "use strict";
-//The clock.js file contains a clock structure and methods that helps construct a clock on a web page
- 
-const Clock = (() => {            //IIFE CLock structure that contains the clocks methods & properties (canvas, context, radius)
-   let canvas; 
-   let ctx;    
-   let radius; 
+//The clock.js file contains the clock structure and related methods that helps construct a clock on a web page
+
+const Clock = (() => {            //Clock IIFE structure that contains the clocks methods & properties (canvas, context, radius)
+   let canvas;
+   let ctx;
+   let radius;
 
    const startClock = () => {                             //startClock() initializes the clock
       canvas = document.getElementById('clock');
