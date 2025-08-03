@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {    //Make sure the DOM is 
         }
     
         function getFiveDay() {                          //getFiveDay() function gets the 3 hour forecast - based on the user's location and displays to web page            
-          const url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=5&appid=${appId}&units=imperial`;
+          const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=5&appid=${appId}&units=imperial`;
           fetch(url)
              .then( (r) => r.json())
                 .then( (wx) => {
