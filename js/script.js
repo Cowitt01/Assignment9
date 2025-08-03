@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {    //Make sure the DOM is 
                     fiveDayInfoHolder.appendChild(h2);
                     fiveDayInfoHolder.appendChild(h3);
 
-                    for(forecast of forecastArray) {
+                    for(let forecast of forecastArray) {
                         let div = document.createElement('div');
                         let h4 = document.createElement('h3');
                         h4.innerHTML = forecast.getDayString();                    //calls the getDayString() method from the WeatherForecast class (in lib.js) to build the formatted date string
